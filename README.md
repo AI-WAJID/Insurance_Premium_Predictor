@@ -123,6 +123,3 @@ The view builds a feature vector from the form data and calls `model.predict([[a
 - Improve validation and UX on the prediction form (e.g., client-side validation, better error messages).
 - Deploy the app using a production-ready stack (e.g., Gunicorn + Nginx, or a PaaS like Render/Heroku) with an external database.
 
-## License
-
-Add your preferred license here (for example, MIT) to clarify how others may use or contribute to this project.
