@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock title %}
+
+{% block body %}
+
+<section class="max-w-3xl mx-auto">
+    <h1 class="text-2xl font-bold text-slate-900">
+        About the Insurance Premium Predictor
+    </h1>
+
+    <p class="mt-3 text-sm text-slate-700">
+        The Insurance Premium Predictor is a machine-learning-powered web application that estimates annual
+        health insurance premiums based on key factors such as age, BMI, smoking status, number of dependents
+        and region. It is built primarily as a learning and portfolio project to demonstrate how a trained model
+        can be deployed inside a modern Django application.
+    </p>
+
+    <p class="mt-3 text-sm text-slate-700">
+        On the backend, the app uses Django for routing, views and template rendering. The machine learning
+        model is implemented with Scikit-Learn’s RandomForest Regressor, with data preparation done using
+        Pandas and experimentation/visualization carried out using Matplotlib. The frontend uses Tailwind CSS to
+        keep the UI clean, responsive and easy to extend.
+    </p>
+
+    <p class="mt-3 text-sm text-slate-700">
+        The goal of this project is not to replace official insurance quotation systems, but to help developers
+        and students understand end-to-end workflows: loading data, training a model, evaluating it, saving it
+        and exposing it through a simple, user-friendly web interface.
+    </p>
+
+    <p class="mt-3 text-sm text-slate-700">
+        Future improvements could include support for additional datasets, more advanced models, user accounts
+        for storing historical predictions, and integrations with external APIs to compare estimates with actual
+        market quotes.
+    </p>
+</section>
+
+{% endblock body %}

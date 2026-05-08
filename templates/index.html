@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Home · Insurance Premium Predictor{% endblock title %}
+
+{% block body %}
+
+<section class="grid gap-10 lg:grid-cols-2 items-center">
+    <!-- Hero text -->
+    <div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
+            Predict your health insurance premium in seconds.
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-slate-700">
+            This web app estimates your annual health insurance premium using a machine learning model trained on
+            real-world data. Enter a few basic details—age, BMI, smoking status, region and dependents—and get an
+            instant, transparent prediction.
+        </p>
+        <p class="mt-3 text-sm sm:text-base text-slate-600">
+            The model is built with RandomForest Regressor using Scikit-Learn on top of a Django backend, with
+            data processing handled by Pandas and visual experimentation done via Matplotlib.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/prediction"
+               class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
+                Try Premium Prediction
+            </a>
+            <a href="/registration"
+               class="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                Create an account
+            </a>
+        </div>
+
+        <p class="mt-3 text-xs text-slate-500">
+            Disclaimer: This tool provides an estimated premium for learning and exploration only. It is not a
+            replacement for quotes from actual insurance providers.
+        </p>
+    </div>
+
+    <!-- Hero panel / quick facts -->
+    <div class="bg-white shadow-sm rounded-xl border border-slate-200 p-6 space-y-4">
+        <h2 class="text-lg font-semibold text-slate-900">
+            Why use this predictor?
+        </h2>
+        <ul class="space-y-3 text-sm text-slate-700">
+            <li>
+                <span class="font-semibold text-indigo-600">Data-driven estimate:</span>
+                The model learns patterns between features such as age, BMI and smoking status to estimate your
+                premium instead of using fixed, hard-coded rules.
+            </li>
+            <li>
+                <span class="font-semibold text-indigo-600">Transparent inputs:</span>
+                You control every input. Change a single factor like region or smoker status and immediately see
+                how it impacts the predicted premium.
+            </li>
+            <li>
+                <span class="font-semibold text-indigo-600">Educational:</span>
+                Ideal for understanding how different lifestyle and demographic variables can influence health
+                insurance costs.
+            </li>
+            <li>
+                <span class="font-semibold text-indigo-600">Open for customization:</span>
+                The project is designed so developers can extend it, retrain the model on new data, or integrate
+                it into larger systems.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Features section -->
+<section class="mt-12 border-t border-slate-200 pt-10">
+    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+        How it works
+    </h2>
+    <div class="grid gap-6 md:grid-cols-3">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wide">1. Collect inputs</h3>
+            <p class="mt-2 text-sm text-slate-700">
+                You provide basic information such as age, gender, BMI, number of children, smoking status and
+                residential region.
+            </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wide">2. Process with ML model</h3>
+            <p class="mt-2 text-sm text-slate-700">
+                These inputs are fed into a RandomForest Regressor trained on a popular health insurance dataset
+                to learn complex non-linear relationships.
+            </p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+            <h3 class="text-sm font-semibold text-indigo-600 uppercase tracking-wide">3. Display your estimate</h3>
+            <p class="mt-2 text-sm text-slate-700">
+                The model outputs a predicted annual premium, which is formatted and displayed instantly on the
+                prediction page for you to review.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Tech stack section -->
+<section class="mt-12 border-t border-slate-200 pt-10">
+    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+        Tech stack
+    </h2>
+    <p class="text-sm text-slate-700">
+        The project uses Django for backend and routing, Tailwind CSS for styling, and a Scikit-Learn
+        RandomForest Regressor model trained and evaluated using Pandas and Matplotlib. This combination makes
+        it a solid end-to-end example of deploying a machine learning model inside a production-ready web
+        application.
+    </p>
+</section>
+
+{% endblock body %}

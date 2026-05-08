@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+<section class="max-w-md mx-auto">
+    <h1 class="text-2xl font-bold text-slate-900 text-center">
+        Sign in to your account
+    </h1>
+    <p class="mt-2 text-sm text-slate-600 text-center">
+        Access your saved details and quickly generate new premium predictions.
+    </p>
+
+    <form method="post"
+          class="mt-6 space-y-4 bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        {% csrf_token %}
+
+        <div>
+            <label for="email" class="block text-sm font-medium text-slate-700">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email"
+                   class="mt-2 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                   placeholder="you@example.com" required>
+        </div>
+
+        <div>
+            <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
+            <input type="password" id="password" name="password"
+                   class="mt-2 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                   placeholder="Enter your password" required>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <label class="flex items-center gap-2">
+                <input id="remember" name="remember" type="checkbox"
+                       class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                <span class="text-xs text-slate-600">Remember me</span>
+            </label>
+            <a href="#" class="text-xs font-medium text-indigo-600 hover:text-indigo-700">
+                Forgot password?
+            </a>
+        </div>
+
+        <button type="submit"
+                class="w-full inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
+            Sign in
+        </button>
+
+        <p class="mt-2 text-xs text-slate-600 text-center">
+            Don’t have an account yet?
+            <a href="/registration" class="text-indigo-600 hover:text-indigo-700 font-medium">
+                Sign up
+            </a>
+        </p>
+    </form>
+</section>
+
+{% endblock body %}

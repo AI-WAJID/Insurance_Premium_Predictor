@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction{% endblock title %}
+
+{% block body %}
+<section class="bg-slate-50 py-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <!-- Card -->
+      <div class="bg-white shadow-xl rounded-2xl border border-slate-200 overflow-hidden">
+        <!-- Header -->
+        <div class="px-6 sm:px-8 pt-8 pb-5 border-b border-slate-100 text-center">
+          <h1 class="sm:text-3xl text-2xl font-semibold tracking-tight text-slate-900">
+            Insurance Premium Prediction
+          </h1>
+          <p class="mt-3 text-sm sm:text-base text-slate-600">
+            Enter your details below and our machine learning model will estimate your annual health
+            insurance premium based on factors like age, BMI, smoking status and region.
+            This is a demo tool and not an official quote.
+          </p>
+
+          {% if output %}
+            <div class="mt-5 inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">
+              <span class="font-semibold mr-1">Estimated premium:</span>
+              <span>{{ output }}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Form -->
+        <form method="post" action="/prediction/">
+          {% csrf_token %}
+
+          <div class="px-6 sm:px-8 py-6 space-y-6">
+            <!-- Row 1: Age + Gender -->
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="age" class="block text-sm font-medium text-slate-700">
+                  Age
+                </label>
+                <p class="mt-1 text-xs text-slate-500">
+                  Age of the primary policy holder (in years).
+                </p>
+                <input
+                  type=""
+                  id="age"
+                  name="age"
+                  class="mt-2 block w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  placeholder="e.g., 33"
+                >
+              </div>
+
+              <div>
+                <label for="sex" class="block text-sm font-medium text-slate-700">
+                  Gender
+                </label>
+                <p class="mt-1 text-xs text-slate-500">
+                  Encoded numerically to match the model used for training.
+                </p>
+                <select
+                  id="sex"
+                  name="sex"
+                  class="mt-2 block w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  aria-label="Default select example"
+                >
+                  <option selected>Open this select menu</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 2: BMI + Children -->
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="bmi" class="block text-sm font-medium text-slate-700">
+                  BMI
+                </label>
+                <p class="mt-1 text-xs text-slate-500">
+                  Body Mass Index (BMI), typically between 15 and 50 for most adults.
+                </p>
+                <input
+                  type="text"
+                  id="bmi"
+                  name="bmi"
+                  class="mt-2 block w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  placeholder="e.g., 27.3"
+                >
+              </div>
+
+              <div>
+                <label for="children" class="block text-sm font-medium text-slate-700">
+                  Number of Children
+                </label>
+                <p class="mt-1 text-xs text-slate-500">
+                  Number of dependents covered by the policy.
+                </p>
+                <input
+                  type="text"
+                  id="children"
+                  name="children"
+                  class="mt-2 block w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  placeholder="e.g., 1"
+                >
+              </div>
+            </div>
+
+            <!-- Row 3: Smoker + Region -->
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="smoker" class="block text-sm font-medium text-slate-700">
+                  Smoker / Non-smoker
+                </label>
+                <p class="mt-1 text-xs text-slate-500">
+                  Smoking status significantly affects the predicted premium.
+                </p>
+                <select
+                  id="smoker"
+                  name="smoker"
+                  class="mt-2 block w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  aria-label="Default select example"
+                >
+                  <option selected>Open this select menu</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="region" class="block text-sm font-medium text-slate-700">
+                  Region
+                </label>
+                <p class="mt-1 text-xs text-slate-500">
+                  Region encoding matches the categories used in the training dataset.
+                </p>
+                <select
+                  id="region"
+                  name="region"
+                  class="mt-2 block w-full rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  aria-label="Default select example"
+                >
+                  <option selected>Open this select menu</option>
+                  <option value="1">southwest</option>
+                  <option value="2">southeast</option>
+                  <option value="3">northwest</option>
+                  <option value="4">northeast</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="px-6 sm:px-8 pb-8">
+            <div class="flex justify-center">
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-8 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              >
+                Predict Premium
+              </button>
+            </div>
+            <p class="mt-3 text-center text-[11px] text-slate-500">
+              Your data is used only to generate this prediction in the current session for demonstration
+              purposes.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock body %}
